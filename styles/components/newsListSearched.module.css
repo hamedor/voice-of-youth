@@ -1,0 +1,19 @@
+.title {
+  margin-top: 2rem;
+}
+.text {
+  display: block;
+  margin-top: 2rem;
+}
+.link:hover {
+  color: #548a6a;
+}
+@media (max-width: 771px) {
+  .title{
+    font-size: 3rem;
+    margin-top: 4rem;
+  }
+  .text{
+    font-size: 2rem;
+  }
+}

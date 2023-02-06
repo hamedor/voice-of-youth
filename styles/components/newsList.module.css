@@ -1,0 +1,90 @@
+.list {
+  margin: 0;
+}
+.item {
+  display: flex;
+  background-color: white;
+  min-height: 24rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+.authorItem {
+  display: flex;
+  flex-direction: column-reverse;
+
+  background-color: white;
+  width: 42rem;
+  min-height: 20rem;
+  margin: 4rem auto;
+}
+
+.column {
+  width: 50%;
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.authorColumn {
+  position: relative;
+  min-height: 22rem;
+  width: 100%;
+}
+
+
+
+.button {
+  height: 2.2rem;
+  margin-top: 2rem;
+  background-color: #548a6a;
+  width: 4rem;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+@media (max-width: 771px) {
+  .item {
+    flex-direction: column;
+    min-height: 50rem;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+  .column:nth-child(1) {
+    order: 2;
+  }
+  .column:nth-child(2) {
+    height: 30rem;
+  }
+  .column {
+    width: 100%;
+  }
+
+  .title {
+    margin-top: 2rem;
+    font-size: 4rem;
+  }
+  .text {
+    font-size: 2rem;
+    line-height: 2;
+    margin-top: 1rem;
+    word-break: break-word;
+  }
+  .hr {
+    margin-top: 10rem;
+  }
+  .smallText {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 565px) {
+  .item{
+    width: 100%;
+    
+  }
+}

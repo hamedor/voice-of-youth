@@ -1,0 +1,70 @@
+.flex {
+  display: flex;
+  max-width: 62rem;
+  margin: 0 auto;
+  /* transform: translate(0,-17rem); */
+  background-color: #fff;
+  min-height: 26rem;
+}
+.background {
+  background-image: url("../../public/images/team/bg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 32rem;
+  width: 100%;
+}
+.column {
+  padding: 0 4rem 0 4rem;
+}
+.title {
+  margin-top: 2rem;
+  font-size: 1.75rem;
+}
+.text {
+  margin-top: 1rem;
+  line-height: 1.5rem;
+}
+.map {
+  width: 100%;
+  border: 1px solid #548a6a;
+  border-top: none;
+  margin-bottom: 4rem;
+  height: 26rem;
+}
+.content {
+  /* transform: translate(0,-26rem); */
+  margin-top: -26rem;
+}
+
+@media (max-width: 771px) {
+  .flex {
+    flex-direction: column;
+  }
+  .title {
+    font-size: 3rem;
+    text-align: center;
+  }
+  .text {
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: center;
+  }
+  .socialText {
+    margin-top: 2rem;
+    font-size: 2rem;
+    text-align: center;
+  }
+  .content{
+    margin-top: 0rem;
+  }
+  .background{
+    display: none;
+   
+  }
+  .map{
+    margin-bottom: unset;
+  }
+  .column{
+    padding: 0 1rem 0 1rem;
+  }
+}

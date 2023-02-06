@@ -1,0 +1,61 @@
+.commentForm{
+ 
+}
+.formOpen {
+    width: 100%;
+  }
+  .label{
+    width: 100%;
+  }
+  .input{
+    width: 32rem;
+    margin-top: 1rem;
+  }
+  
+  .formClose {
+    display: none;
+  }
+  .button{
+    width: 49%;
+
+    border:none;
+    outline: none;
+    cursor: pointer;
+    background-color: #548a6a;
+    color: #fff;
+    
+    height: 2rem;
+   
+  }
+  .button:hover,.button:focus{
+    background-color: #fff;
+    border:1px solid #548a6a;
+    color: #548a6a;
+  }
+  .formButton {
+    margin-top: 1rem;
+  
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border-bottom: 1px solid black;
+  }
+  .formButton:hover {
+    color: #548a6a;
+    border-color: #548a6a;
+  }
+  .flex {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .formOpen{
+    width: 100%;
+  }
+  @media (max-width: 771px) {
+    .input{
+      height: 6rem;
+    }
+  }
+  

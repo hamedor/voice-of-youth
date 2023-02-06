@@ -1,0 +1,24 @@
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 10rem;
+  height: 10rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+.hr {
+  width: 2rem;
+  margin: 1rem auto;
+}

@@ -1,0 +1,115 @@
+.comments {
+  background-color: #fff;
+  padding: 4rem 6rem 4rem 6rem;
+  outline: 1px solid rgba(173, 172, 172, 0.4);
+  outline-offset: -2rem;
+}
+
+.formOpen {
+  width: 12rem;
+}
+
+.formClose {
+  display: none;
+}
+
+.formButton {
+  margin-top: 1rem;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+}
+.formButton:hover {
+  color: #548a6a;
+  border-color: #548a6a;
+}
+
+.title {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.leaveComment {
+  display: flex;
+  flex-direction: column;
+}
+.leaveCommentInput {
+  width: 50%;
+  height: 4rem;
+  display: flex;
+  margin: 1rem auto;
+  border: 1px solid #548a6a;
+}
+.leaveCommentButton {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #548a6a;
+  color: #fff;
+  width: 50%;
+  height: 2rem;
+  margin: 0 auto;
+}
+.leaveCommentButton:hover,.leaveCommentButton:focus{
+  background-color: #fff;
+  border:1px solid #548a6a;
+  color: #548a6a;
+}
+.warn {
+  text-align: center;
+}
+.label{
+  position: relative;
+}
+.commentLength{
+  position: absolute;
+  top: 1.4rem;
+  right: 9rem;
+}
+.warn{
+  text-align: center;
+  color: red;
+}
+@media (max-width: 771px) {
+  .comments {
+    outline: none;
+    padding: 2rem 0rem 2rem 0rem;
+  }
+  .comment {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+  .avatar {
+    height: 35px;
+    width: 35px;
+  }
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+
+  }
+  .name {
+    margin-left: 1rem;
+  }
+  .time {
+    font-size: 2rem;
+  }
+  .leaveCommentInput {
+    height: 6rem;
+    width: 100%;
+  }
+  .leaveCommentButton {
+    height: 4rem;
+    width: 100%;
+  }
+  .commentLength{
+    top: 3.4rem;
+    right: 1rem;
+  }
+}

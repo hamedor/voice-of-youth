@@ -1,0 +1,24 @@
+.flex {
+  display: flex;
+  width: max-content;
+}
+.day{
+  margin-top: -0.2rem;
+}
+.day,
+.time,
+.span {
+  font-size: 0.8rem;
+}
+.time {
+  margin-left: 0.4rem;
+}
+.span{
+  margin-left: 0.1rem;
+}
+@media (max-width: 771px) {
+  .day,.time,.span {
+    font-size: 1.2rem;
+  }
+
+}

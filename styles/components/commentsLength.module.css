@@ -1,0 +1,17 @@
+.flex {
+  display: flex;
+  margin-left: 2rem;
+}
+.ending {
+  margin-left: 0.2rem;
+}
+
+@media (max-width: 771px) {
+  .ending {
+    font-size: 1.4rem;
+    margin-left: 0.4rem;
+  }
+  .text {
+    font-size: 1.4rem;
+  }
+}

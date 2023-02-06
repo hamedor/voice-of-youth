@@ -1,0 +1,60 @@
+.link:hover,
+.link:focus {
+  color: #548a6a;
+  outline-style: none;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 7rem;
+  
+}
+.link {
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  outline: none;
+  height: 30px;
+  width: 30px;
+}
+
+.link:after {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background-color: #548a6a;
+  content: "";
+  transition: width 0.3s ease-out;
+}
+.link:hover:after,
+.link:focus:after {
+  width: 100%;
+}
+
+@media (max-width: 771px) {
+  .container {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .icon {
+    position: absolute;
+  }
+  .link {
+    position: relative;
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+  }
+  .link:hover:after,
+  .link:focus:after {
+    width: unset;
+  }
+
+}

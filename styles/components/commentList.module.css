@@ -1,0 +1,114 @@
+.comment{
+  color: #000;
+}
+.formOpen {
+  width: 12rem;
+}
+
+.formClose {
+  display: none;
+}
+.formButton {
+  margin-top: auto;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+}
+.formButton:hover {
+  color: #548a6a;
+  border-color: #548a6a;
+}
+
+
+.time {
+  margin-top: 0.2rem;
+  margin-left: 0.5rem;
+}
+.flex {
+  display: flex;
+}
+.text{
+  margin-top: 1rem;
+}
+.date {
+  font-size: 0.7rem;
+}
+.line {
+  margin-left: 3rem;
+  margin-top: 0.4rem;
+}
+.hr {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.hrwrap {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 12px;
+  height: calc(100% - 50px);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+}
+.triangle {
+  position: absolute;
+  right: -20px;
+  top: 0px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 9.5px 0 9.5px 20px;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.1);
+}
+.comment {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  min-height: 150px;
+  position: relative;
+  padding: 1rem 2rem 1rem 2rem;
+}
+.length {
+  font-size: 0.8rem;
+  margin-top: auto;
+
+  margin-left: 0.2rem;
+}
+.container{
+  display: flex;
+}
+
+@media (max-width: 771px) {
+  .hrwrap {
+    top: 39px;
+    left: -13px;
+  }
+  .textContainer{
+    margin-top: 1rem;
+  }
+  .text{
+    font-size: 2rem;
+    word-break: break-word;
+  }
+ .length{
+  font-size: 1.2rem;
+ }
+ .comment{
+  padding: 1rem;
+  margin-left: unset;
+ }
+ .flex{
+  margin-top: 1rem;
+  flex-wrap: wrap;
+ }
+}

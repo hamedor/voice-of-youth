@@ -1,0 +1,27 @@
+.like {
+  position: relative;
+  height: 20px;
+  width: 20px;
+}
+
+.likeButton {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.likeContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 771px) {
+  .like {
+    height: 25px;
+    width: 25px;
+  }
+  .likeContainer {
+    font-size: 1.8rem;
+  }
+}

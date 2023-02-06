@@ -1,0 +1,55 @@
+.news {
+  width: 100%;
+  min-height: 500px;
+  padding: 4rem 6rem 4rem 6rem;
+  margin: 4rem auto 0;
+  background-color: #fff;
+  outline: 1px solid rgba(173, 172, 172, 0.4);
+  outline-offset: -2rem;
+
+  position: relative;
+}
+.item {
+}
+.name {
+  display: block;
+}
+.name:last-child {
+  margin-left: 1rem;
+}
+.wrapper {
+  width: 68rem;
+  margin: 0 auto;
+}
+.line {
+  display: flex;
+  align-items: center;
+}
+.link {
+  align-self: center;
+}
+.dot {
+  align-self: center;
+}
+.dot::after {
+  content: " \2219 ";
+}
+.like{
+position: absolute;
+bottom: 4rem;
+right: 6rem;
+}
+@media (max-width: 771px) {
+  .news {
+    outline: none;
+    margin: 0;
+    padding: 4rem 2rem 4rem 2rem;
+    border-bottom: 1px solid rgba(173, 172, 172, 0.4);
+  }
+  .name {
+    font-size: 2rem;
+  }
+  .like{
+    right: 2rem;
+  }
+}
