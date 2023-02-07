@@ -2,7 +2,7 @@ import styles from "../styles/components/commentForm.module.css";
 import { useState } from "react";
 
 const CommentForm = ({ handleSubmit, handleChange, data }) => {
-const [isCommentOpen, setIsCommentOpen] = useState(false);
+  const [isCommentOpen, setIsCommentOpen] = useState(false);
 
   const [commentsLengthWarn, setCommentLengthWarn] = useState(false);
   const [commentLength, setCommentLength] = useState(0);
@@ -12,10 +12,9 @@ const [isCommentOpen, setIsCommentOpen] = useState(false);
     setIsCommentOpen((prev) => !prev);
   };
 
-  const valid = (event) =>{
+  const valid = (event) => {
     const { value } = event.target;
-   
-  }
+  };
 
   return (
     <>
@@ -39,15 +38,18 @@ const [isCommentOpen, setIsCommentOpen] = useState(false);
                 type="text"
                 name="comment"
                 placeholder=" Ответить (Максимум 200 символов)"
-                onChange={(event) =>
-                  [handleChange(event, data.id, data.attributes.nestLevel + 1),()=> valid(event)]
-                }
+                onChange={(event) => [
+                  handleChange(event, data.id, data.attributes.nestLevel + 1),
+                  () => valid(event),
+                ]}
                 required
               />
             </label>
             <div className={styles.flex}>
               <button className={styles.button}>Опубликовать</button>
-              <button className={styles.button} onClick={commentClassToggle}>Отменить</button>
+              <button className={styles.button} onClick={commentClassToggle}>
+                Отменить
+              </button>
             </div>
           </form>
         </div>

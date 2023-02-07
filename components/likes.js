@@ -4,9 +4,8 @@ import { useSession } from "next-auth/react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import like from "../public/icons/like.png";
 import likefilled from "../public/icons/likefilled.png";
-import { motion } from "framer-motion";
 import { LIKE_DELETE, LIKE_MUTATION, LIKE_QUERY } from "../lib/apollo";
-import Notification from '../components/notification';
+import Notification from "../components/notification";
 import { useEffect, useState } from "react";
 
 const Likes = ({ id }) => {
@@ -17,6 +16,7 @@ const Likes = ({ id }) => {
     variables: {
       article: id,
     },
+    fetchPolicy: "cache-first",
   });
 
   const [
@@ -38,22 +38,19 @@ const Likes = ({ id }) => {
     (e) => +e.attributes.users_permissions_user?.data?.id
   );
 
-
   const putLike = () => {
-    if(session){
+    if (session) {
       createLike().then(refetch);
-    }else{
-      setShowWarn(true)
+    } else {
+      setShowWarn(true);
     }
-   
   };
   const removeLike = () => {
     deleteLike().then(refetch);
-   
   };
-  useEffect(()=>{
-    setTimeout(()=>setShowWarn(false),5000)
-  },[showWarn])
+  useEffect(() => {
+    setTimeout(() => setShowWarn(false), 5000);
+  }, [showWarn]);
 
   const reducer = data?.likes?.data?.reduce((newArr, a) => {
     if (+a?.attributes?.users_permissions_user?.data?.id === session?.id) {
@@ -74,7 +71,7 @@ const Likes = ({ id }) => {
 
   return (
     <div style={{ marginLeft: "auto" }} className={styles.likeContainer}>
-      {showWarn ? <Notification text="Вы должны зарегистрироваться"/>:null}
+      {showWarn ? <Notification text="Вы должны зарегистрироваться" /> : null}
       {session ? (
         <button
           onClick={idArray?.includes(session?.id) ? removeLike : putLike}
@@ -94,7 +91,6 @@ const Likes = ({ id }) => {
         <button
           onClick={idArray?.includes(session?.id) ? removeLike : putLike}
           className={styles.likeButton}
-         
         >
           <div className={styles.like}>
             <Image

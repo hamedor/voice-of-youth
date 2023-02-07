@@ -3,7 +3,15 @@ import styles from "../styles/components/filterButtons.module.css";
 import searchIcon from "../public/icons/search.png";
 import Image from "next/image";
 
-export const FilterButtons = ({ categories, selected, filter, setSearch, setSelected }) => {
+export const FilterButtons = ({
+  categories,
+  selected,
+  filter,
+  setSearch,
+  setStart,
+  categoriesLoading,
+  setIsNeverSearched,
+}) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
 
@@ -14,6 +22,9 @@ export const FilterButtons = ({ categories, selected, filter, setSearch, setSele
   };
   const sendSearch = (e) => {
     e.preventDefault();
+
+    setIsNeverSearched(false);
+
     setSearch(searchedText);
   };
 
@@ -47,7 +58,7 @@ export const FilterButtons = ({ categories, selected, filter, setSearch, setSele
             showDropdown ? styles.contentVisible : styles.contentHidden
           }
         >
-          {!categories.loading && (
+          {!categoriesLoading ? (
             <ul className={styles.buttonList}>
               <li className={styles.item}>
                 <button
@@ -61,7 +72,7 @@ export const FilterButtons = ({ categories, selected, filter, setSearch, setSele
                   Все новости
                 </button>
               </li>
-              {categories?.data?.categories?.data?.map((e) => {
+              {categories.categories?.data?.map((e) => {
                 return (
                   <li className={styles.item} key={e.id}>
                     <button
@@ -78,7 +89,7 @@ export const FilterButtons = ({ categories, selected, filter, setSearch, setSele
                 );
               })}
             </ul>
-          )}
+          ) : null}
         </div>
       </div>
       <div className={styles.search}>

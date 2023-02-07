@@ -7,6 +7,7 @@
   background-color: transparent;
   font-size: 2rem;
   cursor: pointer;
+  color: #000;
 }
 .buttonClose:hover {
   color: #548a6a;

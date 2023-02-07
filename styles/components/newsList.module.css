@@ -30,7 +30,14 @@
   min-height: 22rem;
   width: 100%;
 }
-
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 15rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #fff;
+}
 
 
 .button {

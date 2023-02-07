@@ -13,6 +13,7 @@
   color: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
   -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
@@ -57,5 +58,13 @@
     -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
+  }
+}
+@media (max-width: 771px) {
+  .notification{
+    width: 100%;
+  }
+  .text{
+    text-align: center;
   }
 }

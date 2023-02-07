@@ -44,25 +44,24 @@ export default function About() {
 
   return (
     <>
-    <Head>
-    <title>Наша команда</title>
-    
-    </Head>
+      <Head>
+        <title>Наша команда</title>
+      </Head>
 
-    <div className="wrapper">
-      <motion.div
-        className="content"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ x: width, transition: { duration: 1 }, zIndex: 22 }}
-      >
-        <h3 className={styles.title}>Наша команда</h3>
-        <hr className={styles.hr}></hr>
-        <div className={styles.users}>
-          <Render />
-        </div>
-      </motion.div>
-    </div>
+      <div className="wrapper">
+        <motion.div
+          className="content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ x: width, transition: { duration: 1 }, zIndex: 22 }}
+        >
+          <h3 className={styles.title}>Наша команда</h3>
+          <hr className={styles.hr}></hr>
+          <div className={styles.users}>
+            <Render />
+          </div>
+        </motion.div>
+      </div>
     </>
   );
 }

@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import NewsList from "../components/newsList";
-import NewsListSearched from "../components/newsListSearched";
-import NewsListSearchedFail from "../components/newsListSearchedFail";
-import NewsListNewsInfo from "../components/newsListNewsInfo";
+
 import styles from "../styles/pages/news.module.css";
 import { motion } from "framer-motion";
 
 import { FilterButtons } from "../components/filterButtons";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import useInfinityLoading from "../components/useInfinityLoading";
+/* import useInfinityLoading from "../components/useInfinityLoading"; */
 
 import { ARTICLES_QUERY, CATEGORIES_QUERY } from "../lib/apollo";
 import { useQuery } from "@apollo/client";
@@ -18,145 +16,73 @@ import Head from "next/head";
 import Spinner from "../components/spinner";
 
 export default function News() {
-  const [moreItems, setMoreItems] = useState(true);
-
-  const categories = useQuery(CATEGORIES_QUERY);
-
-  const [limit, setLimit] = useState(3);
-
   const [searchAfterSubmit, setSearchAfterSubmit] = useState();
-
+  const [start, setStart] = useState(0);
   const [search, setSearch] = useState();
-  const [selected,setSelected] = useState('Все новости');
+  const [selected, setSelected] = useState("Все новости");
 
   const [category, setCategory] = useState(null);
 
+  const [isNeverSearched, setIsNeverSearched] = useState(true);
 
   const filter = (e) => {
+    setStart(0);
     setCategory(e);
-    if(e===undefined){
-      setSelected('Все новости')
-    }else{
+    if (e === undefined) {
+      setSelected("Все новости");
+    } else {
       setSelected(e);
     }
-    
-    setSearch('');
-    
+
+    setSearch("");
   };
 
-/*   const [data, loading, fetchInf, fetchMore, refetch, start] = useInfinityLoading(
-    category,
-    search
-  ); */
-
-  
- const {data,loading,error,fetchMore,refetch} = useQuery(ARTICLES_QUERY, {
-  variables: {
-    limit: 3,
-    start: 0,
- 
-  },
-  fetchPolicy:'cache-and-network',
-  nextFetchPolicy:'cache-first'
-});
-
-const fetchInf = () => {
-  let categoryInner;
-  if(category===null){
-    categoryInner=undefined;
-  }else{
-    categoryInner=category;
-  }
-  fetchMore({
-    variables: {
-      limit: limit,
-      start: data.articles.data.length,
-      filters: categoryInner,
-      search,
-    },
-    updateQuery: (prevResult, { fetchMoreResult }) => {
-      if (!fetchMoreResult) return prevResult;
-      return {
-        ...prevResult.articles.data,
-        articles: {
-          data: [
-            ...prevResult.articles.data,
-            ...fetchMoreResult.articles.data,
-          ],
-        },
-      };
-    },
-  });
-};
-
-
-
-//ТУТ ВСЕ ПОЛОМАЛОСЬ НАДО ПРИДУМАТЬ ПО ДРУГОМУ!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-  useEffect(() => {
-   
-    if((category || category === undefined) ){
-
-      fetchMore({
-        variables: {
-          filters: category,
-          search: ""
-        },
-      });
+  const { data: categories, loading: categoriesLoading } = useQuery(
+    CATEGORIES_QUERY,
+    {
+      fetchPolicy: "cache-first",
+      nextFetchPolicy: "cache-first",
     }
- 
-  }, [category]);
-
-  useEffect(() => {
-    if (search) {
-      
-      fetchMore({
-        variables: {
-          search,
-        },
-      });
-    }if(!search){
-    
-      fetchMore({
-        variables:{
-          search,
-          filters: category,
-        }
-      })
-    }
-  }, [search]);
-
- 
+  );
 
   return (
-<>
-<Head>
-    <title>Новости</title>
-    
-    </Head>
+    <>
+      <Head>
+        <title>Новости</title>
+      </Head>
 
-    <div className={styles.background}>
-      
-      <div className="newsWrapper">
-        <motion.div
-          className={styles.content}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ transition: { duration: 1 }, zIndex: 22 }}
-        >
-          <FilterButtons
-            categories={categories}
-            category={category}
-            search={search}
-            setSearch={setSearch}
-            setSearchAfterSubmit={setSearchAfterSubmit}
-            selected={selected}
-            setSelected={setSelected}
-   
-            filter={filter}
-          />
+      <div className={styles.background}>
+        <div className="newsWrapper">
+          <motion.div
+            className={styles.content}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ transition: { duration: 1 }, zIndex: 22 }}
+          >
+            <FilterButtons
+              categories={categories}
+              categoriesLoading={categoriesLoading}
+              category={category}
+              search={search}
+              setSearch={setSearch}
+              setSearchAfterSubmit={setSearchAfterSubmit}
+              selected={selected}
+              setSelected={setSelected}
+              setStart={setStart}
+              setIsNeverSearched={setIsNeverSearched}
+              filter={filter}
+            />
+            <NewsList
+              start={start}
+              setStart={setStart}
+              category={category}
+              search={search}
+              setSearch={setSearch}
+              filter={filter}
+              isNeverSearched={isNeverSearched}
+            />
 
-          {!loading && (
+            {/*         {!loading && (
             <InfiniteScroll
               dataLength={data.articles.data.length}
               next={fetchInf}
@@ -208,11 +134,11 @@ const fetchInf = () => {
 
 
             </InfiniteScroll>
-          )}
-          {loading ? <Spinner/>:null}
-        </motion.div>
+          )} */}
+            {/* {loading ? <Spinner/>:null} */}
+          </motion.div>
+        </div>
       </div>
-    </div>
     </>
   );
 }

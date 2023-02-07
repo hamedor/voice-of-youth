@@ -1,8 +1,6 @@
 import styles from "../styles/components/commentList.module.css";
-import Link from "next/link";
-import Image from "next/image";
-import Time from "./Time";
-import { useEffect, useState } from "react";
+
+import {  useState } from "react";
 import CommentForm from "./commentForm";
 import UserInfo from "./userInfo";
 
@@ -46,11 +44,10 @@ const CommentRecursive = ({ data, handleChange, handleSubmit }) => {
     return count;
   };
 
- 
   return data?.flatMap((e) => {
     return (
       <div key={e.id} className={styles.comment} style={{ marginLeft: "1rem" }}>
-      {/*   {e.attributes.comments.data?.length && testId.includes(e.id) ? (
+        {/*   {e.attributes.comments.data?.length && testId.includes(e.id) ? (
           <div className={styles.hrwrap}>
             <span className={styles.triangle}></span>
             <span className={styles.hr}>Jump to comment-1</span>
@@ -73,8 +70,6 @@ const CommentRecursive = ({ data, handleChange, handleSubmit }) => {
             date={e.attributes.createdAt}
             commentTime={true}
           />
-
-        
         </div>
         <div className={styles.textContainer}>
           <p className={styles.text}>{e.attributes.text}</p>
@@ -84,7 +79,6 @@ const CommentRecursive = ({ data, handleChange, handleSubmit }) => {
               handleSubmit={handleSubmit}
               handleChange={handleChange}
               data={e}
-
             />
 
             {e.attributes.nestLevel === 1 &&

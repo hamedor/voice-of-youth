@@ -8,8 +8,6 @@ import { useRouter } from "next/router";
 import SocialIcons from "./socialIcons";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 
-
-
 const Logo = () => {
   return (
     <div className={styles.logoContainer}>
@@ -17,14 +15,20 @@ const Logo = () => {
     </div>
   );
 };
-const Session = ({burgerToggle}) => {
+const Session = ({ burgerToggle }) => {
   const { data: session } = useSession();
   const router = useRouter();
- 
+
   if (session) {
     return (
       <>
-        <Link onClick={burgerToggle} className={styles.link} href="/auth/profile">Профиль</Link>
+        <Link
+          onClick={burgerToggle}
+          className={styles.link}
+          href="/auth/profile"
+        >
+          Профиль
+        </Link>
         <button className={styles.button} onClick={() => signOut()}>
           Выход
         </button>
@@ -46,8 +50,6 @@ const Session = ({burgerToggle}) => {
   );
 };
 
-
-
 const Header = () => {
   const [fixedHeader, setFixedHeader] = useState(false);
   const [burgerOpen, setBurgerOpen] = useState(false);
@@ -56,43 +58,43 @@ const Header = () => {
     document.addEventListener("scroll", (e) => {
       const scrollPosition = window.scrollY;
 
-        if (scrollPosition >= 305) {
-          setFixedHeader(true);
-        }
-        if (scrollPosition <= 100) {
-          setFixedHeader(false);
-        }
-      
-   
+      if (scrollPosition >= 305) {
+        setFixedHeader(true);
+      }
+      if (scrollPosition <= 100) {
+        setFixedHeader(false);
+      }
     });
   });
 
-
- const burgerToggle = () =>{
-
-  if(document.body.style.overflow = "hidden"){
-    document.body.style.overflow = "auto"
-  }
-  setBurgerOpen(prev=>!prev)
- }
+  const burgerToggle = () => {
+    if ((document.body.style.overflow = "hidden")) {
+      document.body.style.overflow = "auto";
+    }
+    setBurgerOpen((prev) => !prev);
+  };
 
   return (
     <>
-    <header className={styles.headerMobile}>
-    <div className={styles.flex}>
-    <Link  href="/">
-    <div className={styles.mobileLogo}>
-            <Image
-              src={LogoImage}
-              alt="логотип сайта голос молодежи"
-              fill={true}
-            />
-          </div>
-    </Link>
-        
+      <header className={styles.headerMobile}>
+        <div className={styles.flex}>
+          <Link href="/">
+            <div className={styles.mobileLogo}>
+              <Image
+                src={LogoImage}
+                alt="логотип сайта голос молодежи"
+                fill={true}
+              />
+            </div>
+          </Link>
+
           <div
-            onClick={burgerToggle} 
-            className={ burgerOpen ? `${styles.burger} ${styles.burgerActive}` : styles.burger}
+            onClick={burgerToggle}
+            className={
+              burgerOpen
+                ? `${styles.burger} ${styles.burgerActive}`
+                : styles.burger
+            }
           >
             <span></span>
             <span></span>
@@ -108,54 +110,53 @@ const Header = () => {
             <Logo />
           </Link>
 
-          <Link onClick={burgerToggle}  className={styles.link} href="/news">
+          <Link onClick={burgerToggle} className={styles.link} href="/news">
             Новости
           </Link>
-          <Link onClick={burgerToggle}  className={styles.link} href="/lyceum">
+          <Link onClick={burgerToggle} className={styles.link} href="/lyceum">
             Лицей
           </Link>
-          <Link onClick={burgerToggle}  className={styles.link} href="/about">
+          <Link onClick={burgerToggle} className={styles.link} href="/about">
             О нас
           </Link>
-          <Link onClick={burgerToggle}  className={styles.link} href="/team">
+          <Link onClick={burgerToggle} className={styles.link} href="/team">
             Стать частью команды
           </Link>
           <SocialIcons />
 
-          <Session burgerToggle={burgerToggle}/>
+          <Session burgerToggle={burgerToggle} />
         </nav>
-    </header>
-    <header className={fixedHeader ? styles.headerFixed : `${styles.header}`}>
-      <div className="localWrapper">
-     
-        <nav
-          className={
-            burgerOpen ? `${[styles.nav]} ${styles.active}` : styles.nav
-          }
-        >
-          <Link className={styles.link} href="/">
-            <Logo />
-          </Link>
+      </header>
+      <header className={fixedHeader ? styles.headerFixed : `${styles.header}`}>
+        <div className="localWrapper">
+          <nav
+            className={
+              burgerOpen ? `${[styles.nav]} ${styles.active}` : styles.nav
+            }
+          >
+            <Link className={styles.link} href="/">
+              <Logo />
+            </Link>
 
-          <Link className={styles.link} href="/news">
-            Новости
-          </Link>
-          <Link className={styles.link} href="/lyceum">
-            Лицей
-          </Link>
-          <Link className={styles.link} href="/about">
-            О нас
-          </Link>
-          <Link className={styles.link} href="/team">
-            Стать частью команды
-          </Link>
-          <SocialIcons />
+            <Link className={styles.link} href="/news">
+              Новости
+            </Link>
+            <Link className={styles.link} href="/lyceum">
+              Лицей
+            </Link>
+            <Link className={styles.link} href="/about">
+              О нас
+            </Link>
+            <Link className={styles.link} href="/team">
+              Стать частью команды
+            </Link>
+            <SocialIcons />
 
-          <Session />
-        </nav>
-        <ul className={styles.social}></ul>
-      </div>
-    </header>
+            <Session />
+          </nav>
+          <ul className={styles.social}></ul>
+        </div>
+      </header>
     </>
   );
 };

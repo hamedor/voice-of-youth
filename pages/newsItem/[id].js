@@ -10,11 +10,8 @@ import DOMPurify from "isomorphic-dompurify";
 import UserInfo from "../../components/userInfo";
 import Comment from "../../components/comment";
 import Likes from "../../components/likes";
-
-import {
-  CATEGORIES_QUERY,
-  ARTICLES_QUERY,
-} from "../../lib/apollo";
+import { useInView } from "react-intersection-observer";
+import { CATEGORIES_QUERY, ARTICLES_QUERY } from "../../lib/apollo";
 import { useQuery } from "@apollo/client";
 
 import Spinner from "../../components/spinner";
@@ -44,19 +41,24 @@ const News = () => {
       animate={{ opacity: 1 }}
       exit={{ x: width, transition: { duration: 1 }, zIndex: 22 }}
     >
-      {loadingArticle? <Spinner/>:null}
+      {loadingArticle ? <Spinner /> : null}
       <section>
         {dataArticles?.articles.data.map((e) => (
           <div key={e.id} className={styles.news}>
-           
-       
-       <UserInfo avatar={e.attributes.users_permissions_user.data.attributes.avatar.data.attributes.url}
-                    id={e.attributes.users_permissions_user.data.id}
-                    firstName={e.attributes.users_permissions_user.data.attributes.firstName}
-                    lastName={e.attributes.users_permissions_user.data.attributes.lastName }
-                    date={e.attributes.date.split("-").reverse().join("-")}
-
-          />
+            <UserInfo
+              avatar={
+                e.attributes.users_permissions_user.data.attributes.avatar.data
+                  .attributes.url
+              }
+              id={e.attributes.users_permissions_user.data.id}
+              firstName={
+                e.attributes.users_permissions_user.data.attributes.firstName
+              }
+              lastName={
+                e.attributes.users_permissions_user.data.attributes.lastName
+              }
+              date={e.attributes.date.split("-").reverse().join("-")}
+            />
 
             <div
               dangerouslySetInnerHTML={{
@@ -67,7 +69,6 @@ const News = () => {
             <div className={styles.like}>
               <Likes id={e.id} entries={e.attributes.likes.data} />
             </div>
-            
           </div>
         ))}
 

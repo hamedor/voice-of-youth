@@ -2,9 +2,9 @@ import styles from "../styles/components/comment.module.css";
 
 import { useSession } from "next-auth/react";
 import { COMMENTS_QUERY, COMMENT_MUTATION } from "../lib/apollo";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import {useMutation, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+
 
 import CommentList from "./commentList";
 import Spinner from "./spinner";
@@ -24,7 +24,6 @@ const Comment = (id) => {
   const [showWarnRegister, setShowWarnRegister] = useState(false);
   const [showWarnCount200, setShowWarnCount200] = useState(false);
 
-
   const {
     loading: loadingComments,
     data,
@@ -41,10 +40,11 @@ const Comment = (id) => {
   const [createComment, { data1, loading, error }] = useMutation(
     COMMENT_MUTATION,
     {
-      onError: (err) => {console.log(err)},
+      onError: (err) => {
+        console.log(err);
+      },
       //refetchQueries: [{query:COMMENTS_QUERY,variables:{article:id.id}}]
     }
-    
   );
 
   const handleSubmit = async (e) => {
@@ -62,17 +62,16 @@ const Comment = (id) => {
     }
   };
   const handleChange = (e, answeredCommentId, nestLevel) => {
-
-    if(!session){
-      setShowWarnRegister(true)
+    if (!session) {
+      setShowWarnRegister(true);
     }
     const { value } = e.target;
-    
-    setCommentLength(value.length)
-    if(commentLength > 200){
+
+    setCommentLength(value.length);
+    if (commentLength > 200) {
       setCommentLengthWarn(true);
-      setShowWarnCount200(true)
-    }else{
+      setShowWarnCount200(true);
+    } else {
       setCommentLengthWarn(false);
     }
     setCommentInput({
@@ -82,19 +81,27 @@ const Comment = (id) => {
       answeredCommentId,
     });
   };
-  useEffect(()=>{
-    setTimeout(()=>setShowWarnRegister(false),5000)
-  },[showWarnRegister])
-  useEffect(()=>{
-    setTimeout(()=>setShowWarnCount200(false),5000)
-  },[showWarnCount200])
+  useEffect(() => {
+    setTimeout(() => setShowWarnRegister(false), 5000);
+  }, [showWarnRegister]);
+  useEffect(() => {
+    setTimeout(() => setShowWarnCount200(false), 5000);
+  }, [showWarnCount200]);
 
   return (
     <section className={styles.comments}>
-      {showWarnRegister ? <Notification text={'Вы должны авторизоваться'}/> :null}
-      {showWarnCount200 ? <Notification text={'Количество символов превышает максимально допустимое'}/> :null}  
+      {showWarnRegister ? (
+        <Notification text={"Вы должны авторизоваться"} />
+      ) : null}
+      {showWarnCount200 ? (
+        <Notification
+          text={"Количество символов превышает максимально допустимое"}
+        />
+      ) : null}
       <h3 className={styles.title}>Комментарии</h3>
-      {commentsLengthWarn ? <p className={styles.warn}>Длина комментария превышает 200 символов</p>: null}
+      {commentsLengthWarn ? (
+        <p className={styles.warn}>Длина комментария превышает 200 символов</p>
+      ) : null}
       {loading ? <Spinner /> : null}
       <CommentList
         data={data?.comments.data}
@@ -104,16 +111,15 @@ const Comment = (id) => {
         commentInput={commentInput}
       />
 
-      {!session && !loadingComments ? 
+      {!session && !loadingComments ? (
         <p className={styles.warn}>
           Зарегистрируйтесь, чтобы оставлять комментарии
-        </p>:null}
-      {loading ? <p>Пожалуйста подождите...</p>: null}
-      
+        </p>
+      ) : null}
+      {loading ? <p>Пожалуйста подождите...</p> : null}
+
       <form className={styles.leaveComment} onSubmit={handleSubmit}>
-   
         <label className={styles.label}>
-         
           <textarea
             className={styles.leaveCommentInput}
             type="text"
@@ -122,13 +128,11 @@ const Comment = (id) => {
             onChange={(e, nestLevel = 1) =>
               handleChange(e, undefined, nestLevel)
             }
-
             required
           />
-                 {/*  <p className={`${commentsLengthWarn ? styles.warn : styles.commentLength}`}>{commentLength}/200</p>  TODO*/}
+          {/*  <p className={`${commentsLengthWarn ? styles.warn : styles.commentLength}`}>{commentLength}/200</p>  TODO*/}
         </label>
 
-      
         <button className={styles.leaveCommentButton}>Опубликовать</button>
       </form>
     </section>

@@ -29,7 +29,6 @@ const SocialIcons = () => {
           src={world}
           alt="иконка веб сайта"
           fill={true}
-     
         ></Image>
       </a>
     </div>

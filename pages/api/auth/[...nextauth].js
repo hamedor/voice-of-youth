@@ -3,8 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import VkProvider from "next-auth/providers/vk";
 import signIIn from "../../../services/auth";
 
-
-
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -13,11 +11,8 @@ export const authOptions = {
       credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
-
-        
       },
       async authorize(credentials, req) {
-        
         /**
          * This function is used to define if the user is authenticated or not.
          * If authenticated, the function should return an object contains the user data.
@@ -32,11 +27,9 @@ export const authOptions = {
           const { user, jwt } = await signIIn({
             email: credentials.email,
             password: credentials.password,
-
-           
           });
-         
-          return {...user, jwt}
+
+          return { ...user, jwt };
         } catch (error) {
           // Sign In Fail
           return null;
@@ -49,7 +42,6 @@ export const authOptions = {
   },
   callbacks: {
     session: async ({ session, token }) => {
-   
       session.id = token.id;
       session.jwt = token.jwt;
 
@@ -60,13 +52,10 @@ export const authOptions = {
 
       return Promise.resolve(session);
     },
-    jwt: async ({ token, user}) => {
-     
-
+    jwt: async ({ token, user }) => {
       const isSignIn = user ? true : false;
       if (isSignIn) {
-
-/*         console.log(user)  */
+        /*         console.log(user)  */
 
         token.id = user.id;
         token.jwt = user.jwt;
@@ -74,8 +63,7 @@ export const authOptions = {
         token.firstName = user.firstName;
         token.lastName = user.lastName;
         token.username = user.username;
-        token.avatar = user.avatar
-
+        token.avatar = user.avatar;
       }
       return Promise.resolve(token);
     },

@@ -29,15 +29,13 @@ const AuthorPageNewsList = ({ entries }) => {
               </p>
               <ReadingTime text={e.attributes.text} />
             </div>
-            <NewsListContent 
-                id={e.id}
-                title={e.attributes.title}
-                text={e.attributes.previewText}
-                views={e.attributes.views}
-                comments={e.attributes.comments.data.length}
-             
-               />
-
+            <NewsListContent
+              id={e.id}
+              title={e.attributes.title}
+              text={e.attributes.previewText}
+              views={e.attributes.views}
+              comments={e.attributes.comments.data.length}
+            />
           </div>
         </div>
       ))}

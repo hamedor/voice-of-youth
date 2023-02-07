@@ -29,7 +29,6 @@ export default function SignIn({ csrfToken }) {
   };
 
   useEffect(() => {
-   
     if (modalOpen) {
       document.body.style.overflow = "hidden";
     }
@@ -38,14 +37,13 @@ export default function SignIn({ csrfToken }) {
     }
   }, [modalOpen]);
 
-  if(registerSucces){
-    setTimeout(()=> setRegisterSucces(false), 5000)
+  if (registerSucces) {
+    setTimeout(() => setRegisterSucces(false), 5000);
   }
 
   return (
     <div className={styles.modal}>
-
-       <Modal
+      <Modal
         isOpen={modalOpen}
         onRequestClose={() => close()}
         contentLabel="Post modal"
@@ -59,14 +57,23 @@ export default function SignIn({ csrfToken }) {
             />
           </>
         )}
-        {!haveAccount && <ModalSignUp setHaveAccount={setHaveAccount} setRegisterSucces={setRegisterSucces} />}
-        {registerSucces ? <Notification text={"Регистрация успешна! Войдите, используя свои данные."}/>:null}
+        {!haveAccount && (
+          <ModalSignUp
+            setHaveAccount={setHaveAccount}
+            setRegisterSucces={setRegisterSucces}
+          />
+        )}
+        {registerSucces ? (
+          <Notification
+            text={"Регистрация успешна! Войдите, используя свои данные."}
+          />
+        ) : null}
         <button
           className={styles.buttonClose}
           onClick={() => close()}
           type="button"
         ></button>
-      </Modal> 
+      </Modal>
     </div>
   );
 }

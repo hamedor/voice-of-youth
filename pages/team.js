@@ -17,46 +17,52 @@ export default function Team() {
   const [width, height] = useDeviceSize();
   return (
     <>
-
-<Head>
-    <title>Стать частью команды</title>
-    
-    </Head>
-    <motion.div
-      className="content"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ x: width, transition: { duration: 1 }, zIndex: 22 }}
-    >
-      <div className={styles.background}></div>
-      <div className="wrapper">
-        <div className={styles.content}>
-          <div className={styles.flex}>
-            <div className={styles.column}>
-              <h3 className={styles.title}>Стать корреспондентом</h3>
-              <p className={styles.text}>
-                Если ты хочешь стать нашим корреспондентом - заполни небольшую
-                анкету и мы свяжемся с тобой!
-              </p>
-              <div className={styles.social}>
-                <p className={styles.socialText}>Мы в социальных сетях:</p>
-                <SocialIcons />
-                <p className={styles.socialText}>Email:</p>
-                <p className={styles.socialText}>golos110molodezhi@gmail.com</p>
+      <Head>
+        <title>Стать частью команды</title>
+      </Head>
+      <motion.div
+        className="content"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ x: width, transition: { duration: 1 }, zIndex: 22 }}
+      >
+        <div className={styles.background}></div>
+        <div className="wrapper">
+          <div className={styles.content}>
+            <div className={styles.flex}>
+              <div className={styles.column}>
+                <h3 className={styles.title}>Стать корреспондентом</h3>
+                <p className={styles.text}>
+                  Если ты хочешь стать нашим корреспондентом - заполни небольшую
+                  анкету и мы свяжемся с тобой!
+                </p>
+                <div className={styles.social}>
+                  <p className={styles.socialText}>Мы в социальных сетях:</p>
+                  <SocialIcons />
+                  <p className={styles.socialText}>Email:</p>
+                  <p className={styles.socialText}>
+                    golos110molodezhi@gmail.com
+                  </p>
+                </div>
               </div>
+              <Form />
             </div>
-            <Form />
-          </div>
-          <div className={styles.map}>
-            <YMaps>
-              <Map width={"100%"} height={"99.5%"} defaultState={defaultState}>
-                <Placemark geometry={[56.8383149745264, 60.626248141056905]} />
-              </Map>
-            </YMaps>
+            <div className={styles.map}>
+              <YMaps>
+                <Map
+                  width={"100%"}
+                  height={"99.5%"}
+                  defaultState={defaultState}
+                >
+                  <Placemark
+                    geometry={[56.8383149745264, 60.626248141056905]}
+                  />
+                </Map>
+              </YMaps>
+            </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
     </>
   );
 }

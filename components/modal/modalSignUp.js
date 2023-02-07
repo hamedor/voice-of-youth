@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
-import { gql, useMutation } from "@apollo/client";
+
+import {  useMutation } from "@apollo/client";
 import { REGISTER_MUTATION } from "../../lib/apollo";
 
 import styles from "../../styles/components/signIn.module.css";
@@ -91,11 +91,12 @@ export default function ModalSignUp({
       },[userData])
       */
 
+  console.log(error);
   return (
     <section className={styles.signIn}>
       <div className={styles.warnContainer}>
         {passwordInvalid ? (
-          <Notification text={'Введённые пароли не совпадают!'}/>
+          <Notification text={"Введённые пароли не совпадают!"} />
         ) : null}
 
         {error ? <ValidationErrors error={error.message} /> : null}
@@ -110,7 +111,7 @@ export default function ModalSignUp({
 
         <input
           className={styles.input}
-          type="text"
+          type="email"
           name="email"
           onChange={(e) => handleChange(e)}
           required
@@ -171,7 +172,7 @@ export default function ModalSignUp({
           Повторите пароль*:{" "}
         </label>
         <input
-          className={`${passwordInvalid ? styles.inputInvalid  : styles.input}`}
+          className={`${passwordInvalid ? styles.inputInvalid : styles.input}`}
           type="password"
           name="repeatedPassword"
           onBlur={(e) => {
@@ -181,7 +182,9 @@ export default function ModalSignUp({
           required
         />
 
-        <button disabled={passwordInvalid} className={styles.button}>Зарегистрироваться</button>
+        <button disabled={error} className={styles.button}>
+          Зарегистрироваться
+        </button>
       </form>
 
       <div className={styles.line}>

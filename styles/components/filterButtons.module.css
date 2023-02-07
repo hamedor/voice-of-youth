@@ -173,6 +173,7 @@
 
   .flex {
     flex-direction: column-reverse;
+    margin-top: 1.5rem;
   }
   .search {
     margin-left: unset;

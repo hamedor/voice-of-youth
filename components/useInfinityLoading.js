@@ -21,7 +21,7 @@ const useInfinityLoading = (category, search, user) => {
     }
   );
 
-/*   useEffect(()=>{
+  /*   useEffect(()=>{
     console.log(loading)
     
     if(!data?.articles?.data && !loading){
@@ -32,10 +32,10 @@ const useInfinityLoading = (category, search, user) => {
 
   const fetchInf = () => {
     let categoryInner;
-    if(category===null){
-      categoryInner=undefined;
-    }else{
-      categoryInner=category;
+    if (category === null) {
+      categoryInner = undefined;
+    } else {
+      categoryInner = category;
     }
     fetchMore({
       variables: {

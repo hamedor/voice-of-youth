@@ -30,7 +30,7 @@ const NewsListNewsInfo = ({
               lastName={lastName}
             />
 
-        {/*     <Image
+            {/*     <Image
               className={styles.imgButton}
               src={feather}
               alt="иконка- кнопка"

@@ -24,7 +24,6 @@ const User = () => {
 
   const [filtered, setFiltered] = useState([]);
 
-
   const router = useRouter();
   const { id } = router.query;
   const users = useQuery(USERS_QUERY);
@@ -37,8 +36,6 @@ const User = () => {
     search,
     user
   );
-
-
 
   /*
 useEffect(()=>{
@@ -76,7 +73,7 @@ useEffect(()=>{
               {entries.map((e) => (
                 <div key={e.id} className={styles.author}>
                   <div className={styles.img}>
-                  {e.attributes.avatar.data && (
+                    {e.attributes.avatar.data && (
                       <Image
                         src={`http://85.193.90.17:1338${e.attributes.avatar.data.attributes.url}`}
                         alt="Picture of the author"
