@@ -49,9 +49,7 @@
 .button:hover {
   color: #548a6a;
 }
-.button:focus {
-  color: #548a6a;
-}
+
 .dropDownText {
   display: none;
 }

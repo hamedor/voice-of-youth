@@ -5,6 +5,7 @@ import Image from "next/image";
 
 export const FilterButtons = ({
   categories,
+  setCategory,
   selected,
   filter,
   setSearch,
@@ -13,7 +14,6 @@ export const FilterButtons = ({
   setIsNeverSearched,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [openSearch, setOpenSearch] = useState(false);
 
   const [searchedText, setSearchedText] = useState();
 
@@ -22,9 +22,10 @@ export const FilterButtons = ({
   };
   const sendSearch = (e) => {
     e.preventDefault();
-
+    setStart(0)
     setIsNeverSearched(false);
-
+    setCategory('')
+   
     setSearch(searchedText);
   };
 

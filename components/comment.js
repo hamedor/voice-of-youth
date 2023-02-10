@@ -35,6 +35,8 @@ const Comment = (id) => {
       offset: 0,
       limit: 30,
     },
+    fetchPolicy:"cache-first",
+
   });
 
   const [createComment, { data1, loading, error }] = useMutation(

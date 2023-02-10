@@ -20,15 +20,21 @@ const NewsList = ({
   start,
   setStart,
   category,
+  setCategory,
+  setSelected,
   search,
   setSearch,
-  isNeverSearched,
+
   authorPage,
   filter,
 }) => {
   const { ref, inView, entry } = useInView({
-    threshold: 1,
+    threshold:0.1,
+    root: null,
+    rootMargin: "0px",
   });
+
+
 
   const [limit, setLimit] = useState(3);
 
@@ -44,23 +50,24 @@ const NewsList = ({
       start: 0,
     },
     fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-first",
+    nextFetchPolicy: "network-only",
     notifyOnNetworkStatusChange: true,
   });
 
   const fetchInf = () => {
     let categoryInner;
-    if (category === null) {
+    if (category === '') {
       categoryInner = undefined;
-    } else {
+    }  else {
       categoryInner = category;
-    }
+      console.log(category)
+    } 
     fetchMore({
       variables: {
         limit: limit,
         start,
         filters: categoryInner,
-        search,
+        search, 
       },
       updateQuery: (prevResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prevResult;
@@ -77,6 +84,10 @@ const NewsList = ({
     });
   };
 
+  useEffect(()=>{
+    console.log(loading)
+  },[loading])
+
   useEffect(() => {
     if (start !== 0) {
       fetchInf();
@@ -88,35 +99,25 @@ const NewsList = ({
     }
   }, [inView]);
 
-  useEffect(() => {
-    if (category || category === undefined) {
+  useEffect(()=>{
+    let categoryInner;
+    setStart(0)
+    if (category === '') {
+      categoryInner = undefined;
+    }  else {
+      categoryInner = category;
+      
+    } 
+    console.log(categoryInner)
       fetchMore({
         variables: {
-          filters: category,
-          search: "",
+          filters:categoryInner,
+          search
         },
       });
-    }
-  }, [category]);
+    
+  },[category, search])
 
-  useEffect(() => {
-    if (search) {
-      fetchMore({
-        variables: {
-          search,
-        },
-      });
-    }
-    if (!search && !isNeverSearched) {
-      setStart(0)
-      fetchMore({
-        variables: {
-          filters:category,
-          start
-        },
-      });
-    }
-  }, [search]);
 
   return (
     <ul>
@@ -175,7 +176,7 @@ const NewsList = ({
               </li>
             );
           })
-        : entries.articles.data.length
+        : entries.articles.data.length && !loading
         ? entries.articles.data.map((e) => {
             return (
               <div className={styles.container} key={e.id}>
@@ -212,7 +213,7 @@ const NewsList = ({
           })
         : null}
       {search && !entries.articles.data.length ? (
-        <NewsListSearchedFail setSearch={setSearch} />
+        <NewsListSearchedFail setCategory={setCategory} setSearch={setSearch} setSelected={setSelected}/>
       ) : null}
 
       {loading ? <Spinner /> : null}

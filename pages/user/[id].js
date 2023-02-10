@@ -14,7 +14,7 @@ import {
 import { useQuery, NetworkStatus, gql } from "@apollo/client";
 import client from "../../lib/apollo";
 import useInfinityLoading from "../../components/useInfinityLoading";
-import InfiniteScroll from "react-infinite-scroll-component";
+
 
 const User = () => {
   const [moreItems, setMoreItems] = useState(true);

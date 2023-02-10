@@ -1,6 +1,12 @@
 import styles from "../styles/components/newsListSearchedFail.module.css";
 
-const NewsListSearchedFail = ({ setSearch }) => {
+const NewsListSearchedFail = ({setSearch, setSelected }) => {
+
+  const getBack = () =>{
+    setSelected('Все новости')
+    setSearch('')
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Нет такого поста</h2>
@@ -8,7 +14,7 @@ const NewsListSearchedFail = ({ setSearch }) => {
         Мы посмотрели везде, но увы... Может быть, измените поисковый запрос?
       </p>
 
-      <button onClick={() => setSearch("")} className={styles.button}>
+      <button onClick={getBack} className={styles.button}>
         Вернуться к постам
       </button>
     </div>

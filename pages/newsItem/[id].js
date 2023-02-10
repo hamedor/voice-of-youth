@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 
-import { useState } from "react";
-
 import { motion } from "framer-motion";
 import useDeviceSize from "../../components/useDeviceSize";
 import styles from "../../styles/pages/newsItem.module.css";
@@ -10,7 +8,7 @@ import DOMPurify from "isomorphic-dompurify";
 import UserInfo from "../../components/userInfo";
 import Comment from "../../components/comment";
 import Likes from "../../components/likes";
-import { useInView } from "react-intersection-observer";
+
 import { CATEGORIES_QUERY, ARTICLES_QUERY } from "../../lib/apollo";
 import { useQuery } from "@apollo/client";
 
@@ -18,8 +16,6 @@ import Spinner from "../../components/spinner";
 
 const News = () => {
   const [width, height] = useDeviceSize();
-
-  const categories = useQuery(CATEGORIES_QUERY);
 
   const router = useRouter();
   const { id } = router.query;
