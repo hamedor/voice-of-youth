@@ -23,7 +23,6 @@ export const FilterButtons = ({
   const sendSearch = (e) => {
     e.preventDefault();
     setStart(0)
-    setIsNeverSearched(false);
     setCategory('')
    
     setSearch(searchedText);
