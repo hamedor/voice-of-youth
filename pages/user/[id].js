@@ -21,21 +21,22 @@ const User = () => {
 
   const [search, setSearch] = useState();
   const [category, setCategory] = useState();
+  const [start,setStart] = useState(0)
 
-  const [filtered, setFiltered] = useState([]);
 
   const router = useRouter();
   const { id } = router.query;
   const users = useQuery(USERS_QUERY);
   const [entries, setEntries] = useState([]);
-  const [articles, setArticles] = useState();
   const [user, setUser] = useState(id);
 
   const [data, loading, fetchInf, fetchMore] = useInfinityLoading(
     category,
     search,
+    start,
     user
   );
+
 
   /*
 useEffect(()=>{
@@ -98,13 +99,10 @@ useEffect(()=>{
             </section>
           )}
           {!loading && (
-            <InfiniteScroll
-              dataLength={data.articles.data.length}
-              next={fetchInf}
-              hasMore={moreItems}
-            >
-              <AuthorPageNewsList entries={data} />
-            </InfiniteScroll>
+            
+          
+              <AuthorPageNewsList entries={data} setStart={setStart} />
+            
           )}
         </div>
       </div>

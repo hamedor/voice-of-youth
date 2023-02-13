@@ -4,17 +4,17 @@ import { useQuery } from "@apollo/client";
 import { ARTICLES_QUERY, CATEGORIES_QUERY } from "../lib/apollo";
 import { useLazyQuery, NetworkStatus, fetchMoreOptions } from "@apollo/client";
 
-const useInfinityLoading = (category, search, user) => {
+const useInfinityLoading = (category, search, user, start) => {
   const [limit, setLimit] = useState(3);
-  const [start, setStart] = useState(0);
-
+  /* const [start, setStart] = useState(0); */
+  //TODO REFACTOR!!!
   const { data, loading, error, fetchMore, refetch } = useQuery(
     ARTICLES_QUERY,
     {
       variables: {
-        limit: 3,
-        start: 0,
-        user,
+    /*     limit: 3,
+        start, */
+      
       },
       fetchPolicy: "cache-and-network",
       nextFetchPolicy: "cache-first",
@@ -32,17 +32,18 @@ const useInfinityLoading = (category, search, user) => {
 
   const fetchInf = () => {
     let categoryInner;
-    if (category === null) {
+    if (category === '') {
       categoryInner = undefined;
-    } else {
+    }  else {
       categoryInner = category;
-    }
+     /*  console.log(category) */
+    } 
     fetchMore({
       variables: {
         limit: limit,
-        start: data.articles.data.length,
+        start,
         filters: categoryInner,
-        search,
+        search, 
       },
       updateQuery: (prevResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prevResult;

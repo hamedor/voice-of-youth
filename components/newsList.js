@@ -14,7 +14,8 @@ import { ARTICLES_QUERY, CATEGORIES_QUERY } from "../lib/apollo";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 
-import { useInView} from "react-intersection-observer";
+import {useInView} from "react-intersection-observer";
+
 
 const NewsList = ({
   start,
@@ -35,9 +36,9 @@ const NewsList = ({
   });
 
 
-
+  const [user,setUser]=useState(undefined)
   const [limit, setLimit] = useState(3);
-
+  
   const {
     data: entries,
     loading,
@@ -84,8 +85,9 @@ const NewsList = ({
     });
   };
 
+
   useEffect(()=>{
-    console.log(loading)
+ /*    console.log(loading) */
   },[loading])
 
   useEffect(() => {
@@ -108,7 +110,7 @@ const NewsList = ({
       categoryInner = category;
       
     } 
-    console.log(categoryInner)
+    
       fetchMore({
         variables: {
           filters:categoryInner,
