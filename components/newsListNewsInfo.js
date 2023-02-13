@@ -41,7 +41,7 @@ const NewsListNewsInfo = ({
         )}
 
         <p className={styles.date}>{date}</p>
-        <ReadingTime text={text} />
+        
       </div>
       {category && (
         <button className={styles.button} onClick={() => filter(category)}>

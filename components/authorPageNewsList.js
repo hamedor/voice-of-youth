@@ -53,7 +53,7 @@ const AuthorPageNewsList = ({ entries,setStart }) => {
               <p className={styles.date}>
                 {e.attributes.date.split("-").reverse().join("-")}
               </p>
-              <ReadingTime text={e.attributes.text} />
+              
             </div>
             <NewsListContent
               id={e.id}

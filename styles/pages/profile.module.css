@@ -15,3 +15,13 @@
 .text {
   margin-top: 1rem;
 }
+.flex{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.avatar{
+  position: relative;
+  width: 100px;
+  height: 100px;
+}

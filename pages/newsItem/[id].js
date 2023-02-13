@@ -8,8 +8,8 @@ import DOMPurify from "isomorphic-dompurify";
 import UserInfo from "../../components/userInfo";
 import Comment from "../../components/comment";
 import Likes from "../../components/likes";
-
-import { CATEGORIES_QUERY, ARTICLES_QUERY } from "../../lib/apollo";
+import ReadingTime from "../../components/ReadingTime";
+import { CATEGORIES_QUERY, ARTICLE_QUERY } from "../../lib/apollo";
 import { useQuery } from "@apollo/client";
 
 import Spinner from "../../components/spinner";
@@ -21,7 +21,7 @@ const News = () => {
   const { id } = router.query;
 
   const { data: dataArticles, loading: loadingArticle } = useQuery(
-    ARTICLES_QUERY,
+    ARTICLE_QUERY,
     {
       variables: {
         id,
@@ -41,6 +41,7 @@ const News = () => {
       <section>
         {dataArticles?.articles.data.map((e) => (
           <div key={e.id} className={styles.news}>
+            <div className={styles.flex}>
             <UserInfo
               avatar={
                 e.attributes.users_permissions_user.data.attributes.avatar.data
@@ -55,7 +56,8 @@ const News = () => {
               }
               date={e.attributes.date.split("-").reverse().join("-")}
             />
-
+            <ReadingTime text={e.attributes.text} />
+            </div>
             <div
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(e.attributes.text),

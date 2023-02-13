@@ -11,11 +11,13 @@
 
 В планах:
 * Возможность пользователю редактировать свой профиль.
-* Уменьшить вес запроса списка новостей за счет отказа от запроса основного контента новости. Сейчас реализация именно такая с целью расчета времени чтения. Соответственно время чтения будет указано в конкретной новости.
+* ~~Уменьшить вес запроса списка новостей за счет отказа от запроса основного контента новости. Сейчас реализация именно такая с целью расчета времени чтения. Соответственно время чтения будет указано в конкретной новости.~~
 * Сделать счетчик просмотров новости.
 * Переделать структуру комментариев в вид комментарий -> массив ответов на комментарий.
 * Лайки и пагинация для комментариев.
 
+Update 0.2.0
+* Значительно увеличена скорость загрузки списка новостей за счёт отказа от запроса основного контента новости. Основной контент теперь загружается в самой новости. Время чтения расчитывается тамже. 
 
 ///////////////////////////////////////////////////////
 
@@ -30,7 +32,10 @@ Done:
 
 Todo:
 * User ability to edit his profile.
-* Make articles list query smaller by not to query article main content. Now article main content contains in article list query to implenment reading time. Accordingly, reading time will be inside specific article.
+* ~~Make articles list query smaller by not to query article main content. Now article main content contains in article list query to implenment reading time. Accordingly, reading time will be inside specific article.~~
 * Views counter for article.
 * Rewrite structure of commentaries to 'commentary => array of answers on commentary'.
 * Likes and pagination for commentaries.
+
+Update 0.2.0
+* Greatly increased speed of loading news list by refuse of query main content there. Main content now downloading inside specific article. Reading time calculating same there.
