@@ -11,6 +11,8 @@ import { useQuery, useMutation}
 export default function Profile() {
   const { data: session, status } = useSession();
   
+  console.log(session)
+
   const [id, setId] = useState();
   useEffect(()=>{
     setId(session?.id)
@@ -22,36 +24,19 @@ export default function Profile() {
     }
   });
 
-  const [userInputImage, setUserInputImage] = useState('');
-  const [base64, setBase64] = useState('');
+  const [userInputImage, setUserInputImage] = useState();
+
 
 
   const handleImageChange = (e) => {
-    setUserInputImage(e.target.value);
-    const file = e.target.files[0];
-    setBase64(main(file));  
+    /* console.log(e.target.files[0]) */
+    setUserInputImage(e.target.files[0]);
+    
   };
-    async function main(file){
-      try{
-          const result = await toBase64(file)
-          setBase64(result);
-          return result
-      }catch(error){
-          console.log('ошибка')
-      }
-    }
-
-    const toBase64 = (file) => new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-  
-  })
-
-  useEffect(()=>{
-    console.log(base64)
-  },[base64])
+useEffect(()=>{
+  console.log(userInputImage)
+},[userInputImage])
+ 
 
 
   const [updateAvatar, { data, loading, error }] = useMutation(USERAVATAR_MUTATION, {
@@ -62,8 +47,7 @@ export default function Profile() {
     e.preventDefault();
     updateAvatar({
       variables:{
-        id,
-        base64
+        file:userInputImage
       }
     })
 
@@ -88,7 +72,7 @@ export default function Profile() {
 
          
           <div className={styles.avatar}>
-            {user?.data?.usersPermissionsUsers.data.map(e=>{
+            {user?.data?.usersPermissionsUsers?.data?.map(e=>{
               return(
                 
                 <Image
@@ -102,9 +86,9 @@ export default function Profile() {
           
             
           </div> 
-    {/*       <form onSubmit = {handleSubmit} className={styles.form}>
+          <form onSubmit = {handleSubmit} className={styles.form}>
           <input 
-                value={userInputImage}
+                /* value={userInputImage} */
                 onChange={handleImageChange}      
                 type='file'
                 placeholder='Загрузить аватар'
@@ -112,7 +96,7 @@ export default function Profile() {
            >
              </input>
              <button type='submit'>Сохранить</button>
-          </form> */}
+          </form> 
   
 
           <div className={styles.flex}>

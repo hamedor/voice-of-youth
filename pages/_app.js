@@ -15,7 +15,7 @@ import client from "../lib/apollo";
 
 import Script from "next/script";
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const spring = {
     type: "spring",
     damping: 20,

@@ -2,14 +2,28 @@ import Highlighter from "react-highlight-words";
 
 import Link from "next/link";
 import styles from "../styles/components/newsListSearched.module.css";
+import { useEffect } from "react";
 
-const NewsListSearched = ({ id, text, title, search }) => {
-  const convert = text.replace(/(<([^>]+)>)/gi, "");
-  const newStr = convert.replace(/&nbsp;/g, "");
+const NewsListSearched = ({ id, text, title, search, fetchMore }) => {
+
+ useEffect(()=>{
+  console.log(search)
+
+/*     fetchMore({
+      variables:{
+        search
+      }
+    }) */
+  
+ },[search])
+
+
+ /*  const convert = text.replace(/(<([^>]+)>)/gi, "");
+  const newStr = convert.replace(/&nbsp;/g, ""); */
 
   return (
     <div className={styles.container}>
-      <Link
+{/*       <Link
         className={styles.link}
         href={{
           pathname: `/newsItem/${id}`,
@@ -33,7 +47,7 @@ const NewsListSearched = ({ id, text, title, search }) => {
           autoEscape={true}
           textToHighlight={newStr}
         />
-      </Link>
+      </Link> */}
     </div>
   );
 };

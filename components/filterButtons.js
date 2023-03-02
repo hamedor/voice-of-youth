@@ -101,10 +101,11 @@ export const FilterButtons = ({
             <Image src={searchIcon} fill={true} alt={"иконка поиска"} />
           </button>
           <input
+           
             className={styles.searchInput}
             onChange={(e) => searchHandler(e)}
             type="text"
-            placeholder="поиск по тексту и заголовкам"
+            placeholder="Поиск по тексту и заголовкам"
           ></input>
         </form>
       </div>

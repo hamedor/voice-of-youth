@@ -68,7 +68,7 @@ const NewsList = ({
         limit: limit,
         start,
         filters: categoryInner,
-        search, 
+      /*   search,  */
       },
       updateQuery: (prevResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prevResult;
@@ -114,11 +114,11 @@ const NewsList = ({
       fetchMore({
         variables: {
           filters:categoryInner,
-          search
+          /* search */
         },
       });
     
-  },[category, search])
+  },[category/* , search */])
 
 
   return (
@@ -161,6 +161,7 @@ const NewsList = ({
                     title={e.attributes.title}
                     text={e.attributes.previewText}
                     views={e.attributes.views}
+                    
                     comments={e.attributes.comments.data.length}
                   />
                 </div>
@@ -205,10 +206,11 @@ const NewsList = ({
                 <NewsListSearched
                   key={e.id}
                   id={e.id}
-                  text={e.attributes.text}
+                  /* text={e.attributes.text} */
                   title={e.attributes.title}
                   data={entries}
                   search={search}
+                  fetchMore={fetchMore}
                 />
               </div>
             );

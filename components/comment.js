@@ -6,9 +6,9 @@ import {useMutation, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 
 
-import CommentList from "./commentList";
 import Spinner from "./spinner";
 import Notification from "./notification";
+import CommentList from "./commentsList";
 
 export const depthL = () => {
   return 3;
@@ -31,13 +31,18 @@ const Comment = (id) => {
     refetch,
   } = useQuery(COMMENTS_QUERY, {
     variables: {
-      article: id.id,
+      article: +id.id,
       offset: 0,
       limit: 30,
     },
     fetchPolicy:"cache-first",
 
   });
+
+  useEffect(()=>{
+    console.log(data);
+    console.log(+id.id)
+  },[data])
 
   const [createComment, { data1, loading, error }] = useMutation(
     COMMENT_MUTATION,
@@ -105,13 +110,14 @@ const Comment = (id) => {
         <p className={styles.warn}>Длина комментария превышает 200 символов</p>
       ) : null}
       {loading ? <Spinner /> : null}
+      
+      
       <CommentList
         data={data?.comments.data}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        setCommentInput={setCommentInput}
-        commentInput={commentInput}
       />
+
 
       {!session && !loadingComments ? (
         <p className={styles.warn}>

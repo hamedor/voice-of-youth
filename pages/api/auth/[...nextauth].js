@@ -37,6 +37,7 @@ export const authOptions = {
       },
     }),
   ],
+ 
   pages: {
     signIn: "/auth/signIn",
   },
@@ -57,6 +58,8 @@ export const authOptions = {
     jwt: async ({ token, user }) => {
       const isSignIn = user ? true : false;
       if (isSignIn) {
+
+        
               
         token.id = user.id;
         token.jwt = user.jwt;
@@ -72,3 +75,5 @@ export const authOptions = {
 };
 
 export default NextAuth(authOptions);
+
+

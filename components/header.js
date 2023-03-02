@@ -17,6 +17,9 @@ const Logo = () => {
 };
 const Session = ({ burgerToggle }) => {
   const { data: session } = useSession();
+
+
+
   const router = useRouter();
 
   if (session) {
@@ -50,10 +53,10 @@ const Session = ({ burgerToggle }) => {
   );
 };
 
-const Header = () => {
+const Header = ({session}) => {
   const [fixedHeader, setFixedHeader] = useState(false);
   const [burgerOpen, setBurgerOpen] = useState(false);
-
+  console.log(session)
   useEffect(() => {
     document.addEventListener("scroll", (e) => {
       const scrollPosition = window.scrollY;
@@ -168,6 +171,6 @@ const Header = () => {
       session,
     },
   };
-};
- */
+}; */
+
 export default Header;
