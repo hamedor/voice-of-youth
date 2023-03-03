@@ -55,3 +55,6 @@ Update 0.2.2
 
 Update 0.2.3
 * Now able send comments via API, instead only from CMS.
+
+Update 0.2.5
+* Update 0.2.0 required to search rework. Now it works.
