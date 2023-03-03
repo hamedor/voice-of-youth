@@ -9,7 +9,7 @@ const NewsListSearched = ({ id, text, title, search, fetchMore }) => {
  useEffect(()=>{
   console.log(search)
 
-/*     fetchMore({
+  /*   fetchMore({
       variables:{
         search
       }
@@ -18,12 +18,12 @@ const NewsListSearched = ({ id, text, title, search, fetchMore }) => {
  },[search])
 
 
- /*  const convert = text.replace(/(<([^>]+)>)/gi, "");
+/*   const convert = text.replace(/(<([^>]+)>)/gi, "");
   const newStr = convert.replace(/&nbsp;/g, ""); */
 
   return (
     <div className={styles.container}>
-{/*       <Link
+  {/*     <Link
         className={styles.link}
         href={{
           pathname: `/newsItem/${id}`,
@@ -31,7 +31,7 @@ const NewsListSearched = ({ id, text, title, search, fetchMore }) => {
             id,
           },
         }}
-      >
+      > */}
         <h2 className={styles.title}>
           <Highlighter
             highlightClassName={styles.highlighted}
@@ -40,7 +40,7 @@ const NewsListSearched = ({ id, text, title, search, fetchMore }) => {
             textToHighlight={title}
           />
         </h2>
-        <Highlighter
+    {/*     <Highlighter
           className={styles.text}
           highlightClassName={styles.highlighted}
           searchWords={[search]}

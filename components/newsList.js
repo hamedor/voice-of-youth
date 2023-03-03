@@ -161,8 +161,8 @@ const NewsList = ({
                     title={e.attributes.title}
                     text={e.attributes.previewText}
                     views={e.attributes.views}
-                    
-                    comments={e.attributes.comments.data.length}
+
+                    comments={e.attributes.comments.data}
                   />
                 </div>
                 <div

@@ -38,13 +38,27 @@
 .leaveComment {
   display: flex;
   flex-direction: column;
+
+  width: 50%;
+  margin: 1rem auto;
+}
+
+.leaveCommentOpen{
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
+  margin: 1rem auto;
 }
 .leaveCommentInput {
-  width: 50%;
+  resize: none;
+  width: 100%;
   height: 4rem;
   display: flex;
-  margin: 1rem auto;
   border: 1px solid #548a6a;
+}
+.leaveCommentButtonClose {
+  display: none;
 }
 .leaveCommentButton {
   border: none;
@@ -52,20 +66,36 @@
   cursor: pointer;
   background-color: #548a6a;
   color: #fff;
-  width: 50%;
+  width: 100%;
   height: 2rem;
   margin: 0 auto;
+
+
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 .leaveCommentButton:hover,.leaveCommentButton:focus{
   background-color: #fff;
   border:1px solid #548a6a;
   color: #548a6a;
 }
+.leaveCommentInput:hover,.leaveCommentInput:focus{
+  outline:0px !important;
+  -webkit-appearance:none;
+  box-shadow: none !important;
+}
+
 .warn {
   text-align: center;
 }
 .label{
   position: relative;
+  width: 100%;
+  margin: 0 auto;
 }
 .commentLength{
   position: absolute;
@@ -113,3 +143,35 @@
     right: 1rem;
   }
 }
+
+
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes slideInDown {
+  0% {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+  }
+  @keyframes slideInDown {
+  0% {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+  } 

@@ -1,0 +1,16 @@
+.answered{
+    background-color: #ebebeb;
+    height: 3rem;
+    color: rgb(122, 122, 120);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.1rem;
+
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    width: 11rem;
+    
+}

@@ -39,13 +39,15 @@ const TestCommentList = ({ data,handleChange, handleSubmit }) => {
                         handleSubmit={handleSubmit}
                         handleChange={handleChange}
                         data={e}
+                        firstComment={e.id}
+                        nestLevel={1}
                         />
                     </div>
                 </div>
                
                 {e.attributes.comments_arrays.data.map(el=>{
                     return(
-                        <div key={el.attributes.uid} className={styles.comment}>
+                        <div key={el.id} className={styles.comment}>
                             <div className={styles.flex}>
                             <UserInfo
                                 avatar={
@@ -66,9 +68,10 @@ const TestCommentList = ({ data,handleChange, handleSubmit }) => {
                                 
 
                                 <AnsweredComment
-                                    answeredComment={el.attributes.answeredComment}
-                                    firstlvlComment={e.attributes}
-                                    secondlvlComment={el.attributes.nestLevel===1 ? {data:[{id:e.id,attributes:{uid:e.attributes.uid,text:e.attributes.text,users_permissions_user:e.attributes.users_permissions_user}}]} : e.attributes.comments_arrays} 
+                                    /* answeredComment={el.attributes.answeredComment} */
+                                    answeredComment={el.attributes.answeredComment} 
+                                    secondlvlComment={el.attributes.nestLevel===1 ? {data:[{id:e.id,attributes:{uid:e.attributes.uid,text:e.attributes.text,users_permissions_user:e.attributes.users_permissions_user}}]} : 
+                                                    el.attributes.nestLevel===2 ? e.attributes.comments_arrays :null} 
                                 />
                             
                                 
@@ -83,6 +86,8 @@ const TestCommentList = ({ data,handleChange, handleSubmit }) => {
                                     handleSubmit={handleSubmit}
                                     handleChange={handleChange}
                                     data={el}
+                                    firstComment={e.id}
+                                    nestLevel={2}
                                     />
                                 </div>
                             </div>

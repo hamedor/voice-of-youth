@@ -1,7 +1,7 @@
 import styles from "../styles/components/commentForm.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const CommentForm = ({ handleSubmit, handleChange, data }) => {
+const CommentForm = ({ handleSubmit, handleChange, data, firstComment,nestLevel}) => {
   const [isCommentOpen, setIsCommentOpen] = useState(false);
 
   const [commentsLengthWarn, setCommentLengthWarn] = useState(false);
@@ -18,7 +18,6 @@ const CommentForm = ({ handleSubmit, handleChange, data }) => {
 
   return (
     <>
-      {data.attributes.nestLevel < 5 ? (
         <div className={styles.commentForm}>
           <button
             onClick={commentClassToggle}
@@ -39,7 +38,7 @@ const CommentForm = ({ handleSubmit, handleChange, data }) => {
                 name="comment"
                 placeholder=" Ответить (Максимум 200 символов)"
                 onChange={(event) => [
-                  handleChange(event, data.id, data.attributes.nestLevel + 1),
+                  handleChange(event, data.attributes.uid,firstComment,nestLevel),
                   () => valid(event),
                 ]}
                 required
@@ -53,7 +52,6 @@ const CommentForm = ({ handleSubmit, handleChange, data }) => {
             </div>
           </form>
         </div>
-      ) : null}
     </>
   );
 };

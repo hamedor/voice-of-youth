@@ -5,7 +5,9 @@ import ViewsLength from "./viewsLength";
 
 import styles from "../styles/components/newsListContent.module.css";
 
+
 const NewsListContent = ({ id, title, text, views, comments }) => {
+  
   return (
     <>
       <Link

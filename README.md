@@ -22,6 +22,10 @@
 Обновление 0.2.2
 * Переделана структура комментариев в вид комментарий -> массив ответов. Каждый ответ на комментарий содержит в себе имя автора и текст комментария, на которые он был отвечен.
 
+Обновление 0.2.3
+* Комментарии теперь можно отправлять по API, а не только из CMS. 
+
+
 ///////////////////////////////////////////////////////
 
 Done:
@@ -45,3 +49,5 @@ Update 0.2.0
 
 Update 0.2.2
 * Rewrited structore of commentaries to 'commentary => array of answers on commentary', Each answer on commentary contains text and name of author of commentary, which it was answered.
+
+* Now able send comments via API, instead only from CMS.
