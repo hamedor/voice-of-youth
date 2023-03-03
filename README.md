@@ -25,6 +25,9 @@
 Обновление 0.2.3
 * Комментарии теперь можно отправлять по API, а не только из CMS. 
 
+Обновление 0.2.5
+* Обновление 0.2.0 потребаволо переработки поиска. Теперь поиск работает.
+
 
 ///////////////////////////////////////////////////////
 
@@ -50,4 +53,8 @@ Update 0.2.0
 Update 0.2.2
 * Rewrited structore of commentaries to 'commentary => array of answers on commentary', Each answer on commentary contains text and name of author of commentary, which it was answered.
 
+Update 0.2.3
 * Now able send comments via API, instead only from CMS.
+
+Update 0.2.5
+* Update 0.2.0 required to search rework. Now it works.

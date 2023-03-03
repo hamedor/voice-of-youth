@@ -1,11 +1,13 @@
 import styles from "../styles/components/newsListSearchedFail.module.css";
 
-const NewsListSearchedFail = ({setSearch, setSelected }) => {
+const NewsListSearchedFail = ({setSearch, setSelected, setCategory, filter}) => {
 
   const getBack = () =>{
-    setSelected('Все новости')
+    setSelected('Все новости');
+    setCategory('')
     setSearch('')
   }
+  
 
   return (
     <div className={styles.container}>
@@ -14,7 +16,7 @@ const NewsListSearchedFail = ({setSearch, setSelected }) => {
         Мы посмотрели везде, но увы... Может быть, измените поисковый запрос?
       </p>
 
-      <button onClick={getBack} className={styles.button}>
+      <button onClick={()=>filter()} className={styles.button}>
         Вернуться к постам
       </button>
     </div>

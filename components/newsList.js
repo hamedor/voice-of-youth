@@ -10,7 +10,7 @@ import NewsListNewsInfo from "../components/newsListNewsInfo";
 import NewsListContent from "./newsListContent";
 import Spinner from "./spinner";
 
-import { ARTICLES_QUERY, CATEGORIES_QUERY } from "../lib/apollo";
+import { ARTICLES_QUERY, ARTICLE_QUERY } from "../lib/apollo";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 
@@ -61,7 +61,7 @@ const NewsList = ({
       categoryInner = undefined;
     }  else {
       categoryInner = category;
-      console.log(category)
+
     } 
     fetchMore({
       variables: {
@@ -179,46 +179,22 @@ const NewsList = ({
               </li>
             );
           })
-        : entries.articles.data.length && !loading
-        ? entries.articles.data.map((e) => {
-            return (
-              <div className={styles.container} key={e.id}>
-                <NewsListNewsInfo
-                  avatar={
-                    e.attributes.users_permissions_user.data.attributes.avatar
-                      .data.attributes.url
-                  }
-                  firstName={
-                    e.attributes.users_permissions_user.data.attributes
-                      .firstName
-                  }
-                  lastName={
-                    e.attributes.users_permissions_user.data.attributes.lastName
-                  }
-                  id={e.attributes.users_permissions_user.data.id}
-                  date={e.attributes.date.split("-").reverse().join("-")}
-                  authorPage={false}
-                  category={""}
-                  filter={""}
-                  text={e.attributes.text}
-                />
-
-                <NewsListSearched
-                  key={e.id}
-                  id={e.id}
-                  /* text={e.attributes.text} */
-                  title={e.attributes.title}
-                  data={entries}
-                  search={search}
-                  fetchMore={fetchMore}
-                />
+          :    <> 
+              <div>
+              <NewsListSearched
+              search={search}
+              />
               </div>
-            );
-          })
-        : null}
+        
+
+              
+              </>
+          }
+    
       {search && !entries.articles.data.length ? (
-        <NewsListSearchedFail setCategory={setCategory} setSearch={setSearch} setSelected={setSelected}/>
+        <NewsListSearchedFail filter={filter} setCategory={setCategory} setSearch={setSearch} setSelected={setSelected}/>
       ) : null}
+         
 
       {loading ? <Spinner /> : null}
     </ul>
